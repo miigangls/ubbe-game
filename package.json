@@ -1,0 +1,15 @@
+{
+  "name": "ubbe-game",
+  "version": "0.1.0",
+  "description": "Plataforma de minijuegos educativos en español",
+  "scripts": {
+    "dev": "concurrently \"sass --watch scss/main.scss:css/main.css --style=expanded\" \"live-server --port=3000 --open=index.html\"",
+    "build:css": "sass scss/main.scss css/main.css --style=compressed --no-source-map",
+    "watch:css": "sass --watch scss/main.scss:css/main.css --style=expanded"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "live-server": "^1.2.2",
+    "sass": "^1.70.0"
+  }
+}
