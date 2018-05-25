@@ -1,0 +1,32 @@
+// =============================================
+// Base — reset y estilos globales
+// =============================================
+@use 'variables' as *;
+
+body {
+  background: $color-bg;
+  font-family: $font-family-base;
+  margin: 0;
+  overflow-x: hidden;
+  color: $color-text;
+}
+
+p {
+  margin: 0;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-muted {
+  color: $color-text-muted !important;
+}
+
+// Modal width override para juegos grandes
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 900px;
+    margin: 1.75rem auto;
+  }
+}

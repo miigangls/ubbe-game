@@ -1,0 +1,12 @@
+// =============================================
+// Ubbe Game — Entry point SCSS
+// =============================================
+
+@use 'base';
+@use 'navbar';
+@use 'landing';
+
+// Juegos
+@use 'games/wordsearch';
+@use 'games/memory';
+@use 'games/sudoku';

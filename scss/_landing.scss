@@ -1,0 +1,18 @@
+// =============================================
+// Landing — tarjetas de juegos
+// =============================================
+@use 'variables' as *;
+
+.body h1 {
+  font-size: 150px;
+  font-weight: 900;
+  line-height: 210px;
+  color: $color-text-dark;
+}
+
+// Placeholder de imagen para la tarjeta de Sudoku
+.sudoku-card-img {
+  height: 160px;
+  background: $color-highlight;
+  border-bottom: 1px solid rgba(0, 0, 0, .125);
+}

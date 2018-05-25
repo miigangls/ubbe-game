@@ -1,0 +1,158 @@
+// =============================================
+// Sudoku
+// =============================================
+@use '../variables' as *;
+
+.sudoku-header {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.sudoku-label {
+  font-size: 1em;
+  font-weight: bold;
+  color: $color-text-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+// Board: grid 9×9
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  width: 324px;
+  border: 3px solid #333;
+  margin: 0 auto 16px;
+  user-select: none;
+}
+
+// Celda base
+.sudoku-cell {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  cursor: pointer;
+  box-sizing: border-box;
+  background: #fff;
+  transition: background $transition-base;
+
+  // Bordes gruesos de caja 3×3
+  &.box-border-right  { border-right:  2px solid #333; }
+  &.box-border-bottom { border-bottom: 2px solid #333; }
+
+  // Dato inicial — no editable
+  &.given {
+    font-weight: 700;
+    color: #222;
+    cursor: default;
+  }
+
+  // Valor ingresado por el usuario
+  &:not(.given) {
+    color: $color-primary;
+  }
+
+  // Highlight: misma fila, columna o caja
+  &.highlight { background: $color-highlight; }
+
+  // Celda seleccionada
+  &.selected {
+    background: $color-selected !important;
+    outline: 2px solid $color-primary;
+    outline-offset: -2px;
+    z-index: 1;
+  }
+
+  // Error: conflicto detectado
+  &.error {
+    color: $color-danger !important;
+    background: $color-danger-light !important;
+  }
+
+  // Victoria
+  &.complete {
+    background: $color-success-light !important;
+    color: $color-success-dark !important;
+  }
+}
+
+// Numpad
+.sudoku-numpad {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  max-width: 324px;
+  margin: 0 auto 8px;
+}
+
+.sudoku-num-btn {
+  width: 42px;
+  height: 42px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: 2px solid $color-border;
+  border-radius: 6px;
+  background: $color-highlight;
+  color: $color-primary;
+  cursor: pointer;
+  transition: background $transition-base, border-color $transition-base;
+
+  &:hover {
+    background: #d0e3ff;
+    border-color: $color-primary;
+  }
+}
+
+.sudoku-erase-btn {
+  color: $color-danger;
+  border-color: #f5c6cb;
+  background: $color-danger-light;
+
+  &:hover {
+    background: #f5c6cb;
+    border-color: $color-danger;
+  }
+}
+
+// Mensaje de victoria
+.sudoku-win {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 1.25em;
+  font-weight: bold;
+  color: $color-success;
+  animation: sudoku-fadein 0.4s ease;
+}
+
+@keyframes sudoku-fadein {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// Responsive
+@media (max-width: $bp-sm) {
+  .sudoku-board {
+    width: 270px;
+  }
+
+  .sudoku-cell {
+    width: 30px;
+    height: 30px;
+    font-size: 0.95em;
+  }
+
+  .sudoku-num-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1em;
+  }
+
+  .sudoku-numpad {
+    max-width: 270px;
+  }
+}

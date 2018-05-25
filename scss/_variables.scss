@@ -1,0 +1,33 @@
+// =============================================
+// Variables globales — Ubbe Game
+// =============================================
+
+// Colors
+$color-primary:       #4a90d9;
+$color-primary-dark:  #357abd;
+$color-success:       #28a745;
+$color-success-light: #d4edda;
+$color-success-dark:  #155724;
+$color-danger:        #c0392b;
+$color-danger-light:  #fde8e8;
+$color-text:          #67757c;
+$color-text-dark:     #444c67;
+$color-text-muted:    #99abb4;
+$color-bg:            #fff;
+$color-highlight:     #e8f0fe;
+$color-selected:      #b3cdf8;
+$color-border:        #c5d5e8;
+$color-card-front:    #4a90d9;
+
+// Typography
+$font-family-base:  'Open Sans', sans-serif;
+$font-family-game:  sans-serif;
+
+// Breakpoints
+$bp-sm:  480px;
+$bp-md:  600px;
+$bp-lg:  992px;
+
+// Animation
+$transition-base: 0.15s ease;
+$transition-flip: 0.45s ease;
