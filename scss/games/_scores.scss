@@ -1,0 +1,111 @@
+// =============================================
+// Scores Panel — highscores compartido
+// =============================================
+@use '../variables' as *;
+
+.scores-panel {
+  margin-top: 18px;
+  padding: 12px 16px 10px;
+  border-top: 1px solid #e8e8e8;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.scores-title {
+  font-size: 0.75em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-text-muted;
+  margin: 0 0 8px;
+}
+
+.scores-empty {
+  color: $color-text-muted;
+  font-size: 0.85em;
+  margin: 0;
+  font-style: italic;
+}
+
+.scores-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 0.9em;
+    color: $color-text;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child { border-bottom: none; }
+  }
+
+  // Primer lugar destacado
+  li.scores-best {
+    font-weight: 700;
+    color: $color-text-dark;
+  }
+}
+
+.scores-pos {
+  width: 24px;
+  font-size: 0.8em;
+  color: $color-text-muted;
+  flex-shrink: 0;
+}
+
+.scores-value {
+  flex: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+// Badge "mejor" junto al 1er lugar
+.scores-badge {
+  font-size: 0.65em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffc107;
+}
+
+.scores-clear-btn {
+  font-size: 0.75em;
+  padding: 3px 10px;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: $color-text-muted;
+  cursor: pointer;
+  transition: border-color $transition-base, color $transition-base;
+
+  &:hover {
+    border-color: $color-danger;
+    color: $color-danger;
+  }
+}
+
+// Timer en la cabecera del Sudoku
+.sudoku-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 324px;
+  margin: 0 auto 12px;
+  padding: 0 2px;
+}
+
+.sudoku-timer {
+  font-size: 0.9em;
+  color: $color-text;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+}

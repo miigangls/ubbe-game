@@ -37,7 +37,6 @@
       $('#result-message')
         .text('\uD83D\uDE1E ' + error + ', intenta con menos palabras')
         .css({ color: 'red' });
-      return;
     }
   }
 
@@ -48,12 +47,13 @@
   });
 
   /* =============================================
-   * ENCUENTRA CARAS — init
+   * ENCUENTRA CARAS — init + scores
    * ============================================= */
   var memoryGame = new MemoryGame('#memory-container');
 
   $('#memoryModal').on('show.bs.modal', function () {
     memoryGame.init();
+    Scores.render('memory', '#memory-scores');
   });
 
   $('#memoryModal').on('hidden.bs.modal', function () {
@@ -64,13 +64,19 @@
     memoryGame.init();
   });
 
+  window.addEventListener('ubbeGame:memoryWin', function (e) {
+    Scores.add('memory', e.detail.moves);
+    Scores.render('memory', '#memory-scores');
+  });
+
   /* =============================================
-   * SUDOKU — init
+   * SUDOKU — init + scores
    * ============================================= */
   var sudokuGame = new SudokuGame('#sudoku-container');
 
   $('#sudokuModal').on('show.bs.modal', function () {
     sudokuGame.init();
+    Scores.render('sudoku', '#sudoku-scores');
   });
 
   $('#sudokuModal').on('hidden.bs.modal', function () {
@@ -79,6 +85,11 @@
 
   document.getElementById('sudoku-restart').addEventListener('click', function () {
     sudokuGame.init();
+  });
+
+  window.addEventListener('ubbeGame:sudokuWin', function (e) {
+    Scores.add('sudoku', e.detail.time);
+    Scores.render('sudoku', '#sudoku-scores');
   });
 
 }(jQuery));

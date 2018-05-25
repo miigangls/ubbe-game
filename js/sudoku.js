@@ -96,6 +96,9 @@
     var selectedCol = -1;
     var cells = [];        // referencias DOM [row][col]
     var won = false;
+    var timerInterval  = null;
+    var elapsedSeconds = 0;
+    var timerEl        = null;
 
     /* ---------- Init ---------- */
     this.init = function () {
@@ -117,11 +120,14 @@
         }
       }
 
+      elapsedSeconds = 0;
       render();
       attachKeyboard();
+      startTimer();
     };
 
     this.destroy = function () {
+      stopTimer();
       container.innerHTML = '';
       document.removeEventListener('keydown', keyHandler);
       puzzle = null;
@@ -135,8 +141,11 @@
 
       var header = document.createElement('div');
       header.className = 'sudoku-header';
-      header.innerHTML = '<span class="sudoku-label">Sudoku — ' + puzzle.label + '</span>';
+      header.innerHTML =
+        '<span class="sudoku-label">Sudoku \u2014 ' + puzzle.label + '</span>' +
+        '<span class="sudoku-timer">\u23F1 0:00</span>';
       container.appendChild(header);
+      timerEl = header.querySelector('.sudoku-timer');
 
       var board = document.createElement('div');
       board.className = 'sudoku-board';
@@ -192,6 +201,28 @@
       pad.appendChild(erase);
 
       return pad;
+    }
+
+    /* ---------- Timer ---------- */
+    function formatTime(secs) {
+      var m = Math.floor(secs / 60);
+      var s = secs % 60;
+      return m + ':' + (s < 10 ? '0' : '') + s;
+    }
+
+    function startTimer() {
+      stopTimer();
+      timerInterval = setInterval(function () {
+        elapsedSeconds++;
+        if (timerEl) timerEl.textContent = '\u23F1 ' + formatTime(elapsedSeconds);
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
     }
 
     /* ---------- Selección de celda ---------- */
@@ -298,6 +329,8 @@
         }
       }
       won = true;
+      stopTimer();
+      window.dispatchEvent(new CustomEvent('ubbeGame:sudokuWin', { detail: { time: elapsedSeconds } }));
       clearSelection();
       document.removeEventListener('keydown', keyHandler);
       showWin();
@@ -312,7 +345,7 @@
       setTimeout(function () {
         var msg = document.createElement('div');
         msg.className = 'sudoku-win';
-        msg.innerHTML = '&#127881; ¡Sudoku completado!';
+        msg.innerHTML = '&#127881; ¡Completado en <strong>' + formatTime(elapsedSeconds) + '</strong>!';
         container.appendChild(msg);
       }, 300);
     }

@@ -94,6 +94,7 @@
     }
 
     function showWin() {
+      window.dispatchEvent(new CustomEvent('ubbeGame:memoryWin', { detail: { moves: moves } }));
       setTimeout(function () {
         var msg = document.createElement('div');
         msg.className = 'memory-win';
