@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css"  />
     <link rel="stylesheet" type="text/css" href="css/wordfind.css"  />
     <link rel="stylesheet" type="text/css" href="css/memory-game.css" />
+    <link rel="stylesheet" type="text/css" href="css/sudoku.css" />
   </head>
   <body>
 
@@ -23,36 +24,50 @@
     <div class="container">
       <div class="starter-template">
         <div class="row">
-          <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="img/sopaletras.png" alt="Card image cap">
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100">
+              <img class="card-img-top" src="img/sopaletras.png" alt="Sopa de Letras">
               <div class="card-body">
                 <h5 class="card-title">SOPA DE LETRAS</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Encuentra las palabras ocultas sobre mecánica y tecnología.</p>
               </div>
               <div class="card-body">
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Jugar</button>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="img/Parejas.jpeg" alt="Card image cap">
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100">
+              <img class="card-img-top" src="img/Parejas.jpeg" alt="Encuentra Caras">
               <div class="card-body">
-                <h5 class="card-title">ENCUENTRAS CARAS</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">ENCUENTRA CARAS</h5>
+                <p class="card-text">Voltea las cartas y encuentra todas las parejas iguales.</p>
               </div>
               <div class="card-body">
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#memoryModal">Jugar</button>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-              <img class="card-img-top" src="img/tecnologiadivertida.jpg" alt="Card image cap">
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100">
+              <div class="card-img-top sudoku-card-img d-flex align-items-center justify-content-center">
+                <span style="font-size:3.5rem;">&#129518;</span>
+              </div>
               <div class="card-body">
-                <h5 class="card-title">JUEGOS DE TECNOLOIA</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">SUDOKU</h5>
+                <p class="card-text">Rellena la cuadrícula 9×9 sin repetir números en fila, columna ni caja.</p>
+              </div>
+              <div class="card-body">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sudokuModal">Jugar</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100">
+              <img class="card-img-top" src="img/tecnologiadivertida.jpg" alt="Juegos de Tecnología">
+              <div class="card-body">
+                <h5 class="card-title">JUEGOS DE TECNOLOGÍA</h5>
+                <p class="card-text">Explora una colección externa de juegos educativos de tecnología.</p>
               </div>
               <div class="card-body">
                 <a href="http://www.areatecnologia.com/Juegos-Tecnologia.htm" target="_blank" class="btn btn-success">Jugar</a>
@@ -118,6 +133,27 @@
   </div>
 </div>
 
+<!-- Modal Sudoku -->
+<div class="modal fade" id="sudokuModal" tabindex="-1" role="dialog" aria-labelledby="sudokuModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sudokuModalTitle">SUDOKU</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="sudoku-container"></div>
+        <button class="memory-restart-btn" id="sudoku-restart">Nueva partida</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
@@ -125,6 +161,7 @@
 <script type="text/javascript" src="js/wordfind.js"></script>
 <script type="text/javascript" src="js/wordfindgame.js"></script>
 <script type="text/javascript" src="js/memory-game.js"></script>
+<script type="text/javascript" src="js/sudoku.js"></script>
 <script>
 /* Example words setup */
 [
@@ -192,6 +229,21 @@ $('#memoryModal').on('hidden.bs.modal', function () {
 
 document.getElementById('memory-restart').addEventListener('click', function () {
   memoryGame.init();
+});
+
+/* ---- SUDOKU ---- */
+var sudokuGame = new SudokuGame('#sudoku-container');
+
+$('#sudokuModal').on('show.bs.modal', function () {
+  sudokuGame.init();
+});
+
+$('#sudokuModal').on('hidden.bs.modal', function () {
+  sudokuGame.destroy();
+});
+
+document.getElementById('sudoku-restart').addEventListener('click', function () {
+  sudokuGame.init();
 });
         </script>
 </body>

@@ -114,6 +114,12 @@ nav.navbar.navbar-inverse {
     margin: 0 30px;
 }
 
+.sudoku-card-img {
+  height: 160px;
+  background: #e8f0fe;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
 @media (min-width: 576px){
   .modal-dialog {
       max-width: 900px;
