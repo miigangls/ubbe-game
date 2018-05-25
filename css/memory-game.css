@@ -1,0 +1,131 @@
+/* =============================================
+   ENCUENTRA CARAS — Memory Game Styles
+   ============================================= */
+
+.memory-moves {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #444c67;
+  margin-bottom: 14px;
+}
+
+.memory-deck {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* Carta base */
+.memory-card {
+  width: 72px;
+  height: 72px;
+  cursor: pointer;
+  perspective: 700px;
+  user-select: none;
+}
+
+.memory-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.45s ease;
+}
+
+/* Flip al seleccionar o cuando ya está emparejada */
+.memory-card.flipped .memory-card-inner,
+.memory-card.matched .memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Cara frontal (reverso visible al inicio) */
+.memory-card-front,
+.memory-card-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.memory-card-front {
+  background: #4a90d9;
+  color: #fff;
+  font-size: 1.8em;
+  font-weight: 900;
+  box-shadow: 0 2px 6px rgba(74, 144, 217, 0.4);
+  transition: background 0.2s;
+}
+
+.memory-card:hover:not(.flipped):not(.matched) .memory-card-front {
+  background: #357abd;
+}
+
+/* Cara trasera (emoji visible al voltear) */
+.memory-card-back {
+  background: #f0f4ff;
+  border: 2px solid #c5d5e8;
+  font-size: 2.2em;
+  transform: rotateY(180deg);
+}
+
+/* Estado emparejado */
+.memory-card.matched .memory-card-back {
+  background: #d4edda;
+  border-color: #28a745;
+}
+
+/* Mensaje de victoria */
+.memory-win {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 1.25em;
+  color: #28a745;
+  animation: memory-fadein 0.4s ease;
+}
+
+@keyframes memory-fadein {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Botón nueva partida */
+.memory-restart-btn {
+  display: block;
+  margin: 14px auto 0;
+  padding: 8px 22px;
+  background: #4a90d9;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.memory-restart-btn:hover {
+  background: #357abd;
+}
+
+/* Responsive: pantallas pequeñas */
+@media (max-width: 480px) {
+  .memory-deck {
+    max-width: 280px;
+    gap: 8px;
+  }
+
+  .memory-card {
+    width: 58px;
+    height: 58px;
+  }
+
+  .memory-card-back {
+    font-size: 1.7em;
+  }
+}
