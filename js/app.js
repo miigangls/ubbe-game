@@ -11,39 +11,35 @@
     localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
   }
 
-  // Restaurar preferencia guardada
-  if (localStorage.getItem(THEME_KEY) === 'dark') {
-    applyTheme(true);
-  }
+  if (localStorage.getItem(THEME_KEY) === 'dark') applyTheme(true);
 
   document.getElementById('theme-toggle').addEventListener('click', function () {
     applyTheme(!document.body.classList.contains('dark-mode'));
   });
 
   /* =============================================
-   * SOPA DE LETRAS — init
+   * SOPA DE LETRAS — categorías + init
    * ============================================= */
-  var WORDSEARCH_WORDS = [
-    'Torno',
-    'Biela',
-    'Polea',
-    'Manivela',
-    'Tornillo',
-    'Engranes',
-    'Rodamientos',
-    'Poleas',
-    'Cuna',
-    'Cremallera'
-  ];
+  var currentCategory = 'mecanica';
 
-  WORDSEARCH_WORDS.map(function (word) {
-    WordFindGame.insertWordBefore($('#add-word').parent(), word);
-  });
+  function loadCategory(key) {
+    currentCategory = key;
+    // Limpiar palabras actuales (todo excepto #add-word)
+    $('#words li:not(:last-child)').remove();
+    // Insertar nuevas
+    WORDSEARCH_DATA[key].words.forEach(function (word) {
+      WordFindGame.insertWordBefore($('#add-word').parent(), word);
+    });
+    recreateWordSearch();
+    // Estado visual del botón activo
+    $('.ws-cat-btn').removeClass('active').attr('aria-pressed', 'false');
+    $('.ws-cat-btn[data-cat="' + key + '"]').addClass('active').attr('aria-pressed', 'true');
+  }
 
   var wordSearchGame;
 
   function recreateWordSearch() {
-    $('#result-message').removeClass();
+    $('#result-message').removeClass().text('');
     try {
       wordSearchGame = new WordFindGame('#puzzle', {
         allowedMissingWords: 10,
@@ -59,7 +55,13 @@
     }
   }
 
-  recreateWordSearch();
+  // Cargar categoría inicial
+  loadCategory('mecanica');
+
+  // Botones de categoría
+  $(document).on('click', '.ws-cat-btn', function () {
+    loadCategory($(this).data('cat'));
+  });
 
   $('#solve').click(function () {
     if (wordSearchGame) wordSearchGame.solve();
@@ -109,6 +111,13 @@
   window.addEventListener('ubbeGame:sudokuWin', function (e) {
     Scores.add('sudoku', e.detail.time);
     Scores.render('sudoku', '#sudoku-scores');
+  });
+
+  /* =============================================
+   * ESTADÍSTICAS — modal
+   * ============================================= */
+  $('#statsModal').on('show.bs.modal', function () {
+    Scores.renderStats('#stats-container');
   });
 
 }(jQuery));

@@ -149,24 +149,37 @@
 
       var board = document.createElement('div');
       board.className = 'sudoku-board';
+      board.setAttribute('role', 'grid');
+      board.setAttribute('aria-label', 'Tablero de Sudoku 9 por 9');
 
       for (var r = 0; r < 9; r++) {
         cells[r] = [];
         for (var c = 0; c < 9; c++) {
           var cell = document.createElement('div');
           cell.className = 'sudoku-cell';
+          cell.setAttribute('role', 'gridcell');
+          cell.setAttribute('tabindex', givenGrid[r][c] ? '-1' : '0');
           if (r % 3 === 2 && r !== 8) cell.classList.add('box-border-bottom');
           if (c % 3 === 2 && c !== 8) cell.classList.add('box-border-right');
 
           if (givenGrid[r][c]) {
             cell.classList.add('given');
             cell.textContent = userGrid[r][c];
-          } else if (userGrid[r][c] !== 0) {
-            cell.textContent = userGrid[r][c];
+            cell.setAttribute('aria-readonly', 'true');
+            cell.setAttribute('aria-label', 'Fila ' + (r+1) + ' columna ' + (c+1) + ', dado: ' + userGrid[r][c]);
+          } else {
+            var initLabel = userGrid[r][c] !== 0
+              ? 'Fila ' + (r+1) + ' columna ' + (c+1) + ', valor ' + userGrid[r][c]
+              : 'Fila ' + (r+1) + ' columna ' + (c+1) + ', vac\u00EDa';
+            cell.setAttribute('aria-label', initLabel);
+            if (userGrid[r][c] !== 0) cell.textContent = userGrid[r][c];
           }
 
           (function (row, col) {
             cell.addEventListener('click', function () { selectCell(row, col); });
+            cell.addEventListener('keydown', function (e) {
+              if (e.key === 'Enter' || e.key === ' ') { selectCell(row, col); e.preventDefault(); }
+            });
           }(r, c));
 
           board.appendChild(cell);
@@ -244,12 +257,15 @@
         }
       }
       cells[row][col].classList.add('selected');
+      cells[row][col].setAttribute('aria-selected', 'true');
+      cells[row][col].focus();
     }
 
     function clearSelection() {
       for (var r = 0; r < 9; r++) {
         for (var c = 0; c < 9; c++) {
           cells[r][c].classList.remove('selected', 'highlight');
+          cells[r][c].removeAttribute('aria-selected');
         }
       }
     }
@@ -263,6 +279,9 @@
       userGrid[selectedRow][selectedCol] = num;
       var cell = cells[selectedRow][selectedCol];
       cell.textContent = num === 0 ? '' : num;
+      cell.setAttribute('aria-label',
+        'Fila ' + (selectedRow+1) + ' columna ' + (selectedCol+1) +
+        (num !== 0 ? ', valor ' + num : ', vac\u00EDa'));
 
       refreshErrors();
       if (num !== 0) checkWin();

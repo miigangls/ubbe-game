@@ -3,21 +3,33 @@
   <head>
     <title>Ubbe Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plataforma de minijuegos educativos de tecnología y mecánica">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/main.css" />
   </head>
   <body>
 
-    <nav class="navbar ubbe-navbar">
+    <!-- Skip link (accesibilidad) -->
+    <a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+    <nav class="navbar ubbe-navbar" role="navigation" aria-label="Navegación principal">
       <div class="container">
         <div class="ubbe-navbar-inner">
-          <a class="ubbe-brand" href="#">
+          <a class="ubbe-brand" href="#" aria-label="Ubbe Game — inicio">
             <span class="ubbe-brand-name">Ubbe<span class="ubbe-brand-accent">Game</span></span>
           </a>
-          <button class="ubbe-theme-btn" id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
-            <span class="theme-icon-light">&#9790;</span>
-            <span class="theme-icon-dark">&#9728;</span>
-          </button>
+          <div class="ubbe-navbar-actions">
+            <button class="ubbe-stats-btn" id="stats-btn"
+                    data-toggle="modal" data-target="#statsModal"
+                    aria-label="Ver estadísticas">
+              Estad&iacute;sticas
+            </button>
+            <button class="ubbe-theme-btn" id="theme-toggle"
+                    aria-label="Cambiar a modo oscuro" title="Cambiar tema">
+              <span class="theme-icon-light" aria-hidden="true">&#9790;</span>
+              <span class="theme-icon-dark"  aria-hidden="true">&#9728;</span>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -28,149 +40,203 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="starter-template">
-        <div class="row">
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card h-100">
-              <img class="card-img-top" src="img/sopaletras.png" alt="Sopa de Letras">
-              <div class="card-body">
-                <h5 class="card-title">SOPA DE LETRAS</h5>
-                <p class="card-text">Encuentra las palabras ocultas sobre mecánica y tecnología.</p>
-              </div>
-              <div class="card-body">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Jugar</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card h-100">
-              <img class="card-img-top" src="img/Parejas.jpeg" alt="Encuentra Caras">
-              <div class="card-body">
-                <h5 class="card-title">ENCUENTRA CARAS</h5>
-                <p class="card-text">Voltea las cartas y encuentra todas las parejas iguales.</p>
-              </div>
-              <div class="card-body">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#memoryModal">Jugar</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card h-100">
-              <div class="card-img-top sudoku-card-img d-flex align-items-center justify-content-center">
-                <span style="font-size:3.5rem;">&#129518;</span>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">SUDOKU</h5>
-                <p class="card-text">Rellena la cuadrícula 9×9 sin repetir números en fila, columna ni caja.</p>
-              </div>
-              <div class="card-body">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sudokuModal">Jugar</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-4">
-            <div class="card h-100">
-              <img class="card-img-top" src="img/tecnologiadivertida.jpg" alt="Juegos de Tecnología">
-              <div class="card-body">
-                <h5 class="card-title">JUEGOS DE TECNOLOGÍA</h5>
-                <p class="card-text">Explora una colección externa de juegos educativos de tecnología.</p>
-              </div>
-              <div class="card-body">
-                <a href="http://www.areatecnologia.com/Juegos-Tecnologia.htm" target="_blank" class="btn btn-success">Jugar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /.container -->
-    <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">SOPA DE LETRAS</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div id="main" role="main">
+    <main id="main-content">
+      <div class="container">
+        <div class="starter-template">
           <div class="row">
-            <div class="col-md-8">
-                <div id="puzzle"></div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="card h-100">
+                <img class="card-img-top" src="img/sopaletras.png" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">SOPA DE LETRAS</h5>
+                  <p class="card-text">Encuentra las palabras ocultas sobre mec&aacute;nica y tecnolog&iacute;a.</p>
+                </div>
+                <div class="card-body">
+                  <button type="button" class="btn btn-success"
+                          data-toggle="modal" data-target="#wordsearchModal"
+                          aria-label="Jugar Sopa de Letras">Jugar</button>
+                </div>
+              </div>
             </div>
-            <div class="col-md-4">
-              <ul id="words">
-                  <li><button id="add-word" style="display:none">Add word</button></li>
-              </ul>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="card h-100">
+                <img class="card-img-top" src="img/Parejas.jpeg" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">ENCUENTRA CARAS</h5>
+                  <p class="card-text">Voltea las cartas y encuentra todas las parejas iguales.</p>
+                </div>
+                <div class="card-body">
+                  <button type="button" class="btn btn-success"
+                          data-toggle="modal" data-target="#memoryModal"
+                          aria-label="Jugar Encuentra Caras">Jugar</button>
+                </div>
+              </div>
             </div>
-
-
-
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="card h-100">
+                <div class="card-img-top sudoku-card-img d-flex align-items-center justify-content-center" aria-hidden="true">
+                  <span style="font-size:3.5rem;">&#129518;</span>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">SUDOKU</h5>
+                  <p class="card-text">Rellena la cuadr&iacute;cula 9&times;9 sin repetir n&uacute;meros en fila, columna ni caja.</p>
+                </div>
+                <div class="card-body">
+                  <button type="button" class="btn btn-success"
+                          data-toggle="modal" data-target="#sudokuModal"
+                          aria-label="Jugar Sudoku">Jugar</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="card h-100">
+                <img class="card-img-top" src="img/tecnologiadivertida.jpg" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">JUEGOS DE TECNOLOG&Iacute;A</h5>
+                  <p class="card-text">Explora una colecci&oacute;n externa de juegos educativos de tecnolog&iacute;a.</p>
+                </div>
+                <div class="card-body">
+                  <a href="http://www.areatecnologia.com/Juegos-Tecnologia.htm"
+                     target="_blank" rel="noopener noreferrer"
+                     class="btn btn-success"
+                     aria-label="Ir a Juegos de Tecnología (abre en nueva pestaña)">Jugar</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button id="solve" style="display:none"></button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <p id="result-message"></p>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal Encuentra Caras -->
-<div class="modal fade" id="memoryModal" tabindex="-1" role="dialog" aria-labelledby="memoryModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="memoryModalTitle">ENCUENTRA CARAS</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div id="memory-container"></div>
-        <button class="memory-restart-btn" id="memory-restart">Nueva partida</button>
-        <div id="memory-scores"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
+    </main>
 
-<!-- Modal Sudoku -->
-<div class="modal fade" id="sudokuModal" tabindex="-1" role="dialog" aria-labelledby="sudokuModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="sudokuModalTitle">SUDOKU</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div id="sudoku-container"></div>
-        <button class="memory-restart-btn" id="sudoku-restart">Nueva partida</button>
-        <div id="sudoku-scores"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    <!-- =============================================
+         Modal: SOPA DE LETRAS
+         ============================================= -->
+    <div class="modal fade" id="wordsearchModal" tabindex="-1" role="dialog"
+         aria-labelledby="wordsearchModalTitle" aria-modal="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="wordsearchModalTitle">SOPA DE LETRAS</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Selector de categoría -->
+            <div class="ws-categories" role="group" aria-label="Seleccionar categoría de palabras">
+              <button class="ws-cat-btn active" data-cat="mecanica"
+                      aria-pressed="true">Mec&aacute;nica</button>
+              <button class="ws-cat-btn" data-cat="electronica"
+                      aria-pressed="false">Electr&oacute;nica</button>
+              <button class="ws-cat-btn" data-cat="informatica"
+                      aria-pressed="false">Inform&aacute;tica</button>
+            </div>
+            <div id="main" role="region" aria-label="Puzzle de sopa de letras">
+              <div class="row">
+                <div class="col-md-8">
+                  <div id="puzzle" aria-label="Cuadrícula de la sopa de letras"></div>
+                </div>
+                <div class="col-md-4">
+                  <ul id="words" aria-label="Lista de palabras a encontrar">
+                    <li><button id="add-word" style="display:none">Add word</button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="solve" style="display:none" aria-hidden="true"></button>
+            <p id="result-message" aria-live="polite" aria-atomic="true"></p>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-<script type="text/javascript" src="js/wordfind.js"></script>
-<script type="text/javascript" src="js/wordfindgame.js"></script>
-<script type="text/javascript" src="js/scores.js"></script>
-<script type="text/javascript" src="js/memory-game.js"></script>
-<script type="text/javascript" src="js/sudoku.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
-</body>
+    <!-- =============================================
+         Modal: ENCUENTRA CARAS
+         ============================================= -->
+    <div class="modal fade" id="memoryModal" tabindex="-1" role="dialog"
+         aria-labelledby="memoryModalTitle" aria-modal="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="memoryModalTitle">ENCUENTRA CARAS</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="memory-container" role="region" aria-label="Juego de memoria"></div>
+            <button class="memory-restart-btn" id="memory-restart"
+                    aria-label="Iniciar nueva partida de Encuentra Caras">Nueva partida</button>
+            <div id="memory-scores" aria-live="polite"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+         Modal: SUDOKU
+         ============================================= -->
+    <div class="modal fade" id="sudokuModal" tabindex="-1" role="dialog"
+         aria-labelledby="sudokuModalTitle" aria-modal="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="sudokuModalTitle">SUDOKU</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="sudoku-container" role="region" aria-label="Juego de Sudoku"></div>
+            <button class="memory-restart-btn" id="sudoku-restart"
+                    aria-label="Iniciar nueva partida de Sudoku">Nueva partida</button>
+            <div id="sudoku-scores" aria-live="polite"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
+         Modal: ESTADÍSTICAS
+         ============================================= -->
+    <div class="modal fade" id="statsModal" tabindex="-1" role="dialog"
+         aria-labelledby="statsModalTitle" aria-modal="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="statsModalTitle">ESTAD&Iacute;STICAS</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="stats-container"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/wordfind.js"></script>
+    <script type="text/javascript" src="js/wordfindgame.js"></script>
+    <script type="text/javascript" src="js/wordsearch-data.js"></script>
+    <script type="text/javascript" src="js/scores.js"></script>
+    <script type="text/javascript" src="js/memory-game.js"></script>
+    <script type="text/javascript" src="js/sudoku.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
 </html>

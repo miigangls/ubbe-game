@@ -1,0 +1,120 @@
+// =============================================
+// Stats Modal — pantalla de estadísticas
+// =============================================
+@use '../variables' as *;
+
+// Botón de stats en navbar
+.ubbe-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ubbe-stats-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 20px;
+  padding: 5px 16px;
+  cursor: pointer;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background $transition-base;
+
+  &:hover { background: rgba(255, 255, 255, 0.28); }
+}
+
+// Sección por juego dentro del modal
+.stats-game {
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+
+  &:last-child { border-bottom: none; }
+}
+
+.stats-game-title {
+  font-size: 0.8em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-text-muted;
+  margin: 0 0 12px;
+}
+
+// Fila de números clave
+.stats-numbers {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 14px;
+}
+
+.stats-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.stats-n {
+  font-size: 1.4em;
+  font-weight: 800;
+  color: $color-text-dark;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.stats-n-label {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-muted;
+}
+
+// Mini gráfica de barras
+.stats-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 56px;
+  margin-bottom: 4px;
+}
+
+.stats-bar {
+  flex: 1;
+  background: $color-primary;
+  border-radius: 3px 3px 0 0;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+
+  &:hover { opacity: 1; }
+
+  &--best {
+    background: $color-success;
+    opacity: 1;
+  }
+}
+
+.stats-chart-label {
+  font-size: 0.7em;
+  color: $color-text-muted;
+  margin: 0 0 10px;
+  font-style: italic;
+}
+
+// Dark mode overrides
+body.dark-mode {
+  .stats-game { border-bottom-color: #2d3748; }
+  .stats-n    { color: #e2e8f0; }
+  .stats-game-title,
+  .stats-n-label,
+  .stats-chart-label { color: #718096; }
+  .ubbe-stats-btn { /* heredado del navbar dark */ }
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .stats-numbers { gap: 14px; }
+  .stats-n { font-size: 1.2em; }
+}

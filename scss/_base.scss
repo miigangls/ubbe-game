@@ -23,6 +23,26 @@ p {
   color: $color-text-muted !important;
 }
 
+// Skip link (accesibilidad — visible solo al recibir foco)
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #2d3a8c;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 9999;
+  border-radius: 0 0 6px 0;
+  font-weight: 700;
+  transition: top 0.2s;
+
+  &:focus {
+    top: 0;
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+  }
+}
+
 // Modal width override para juegos grandes
 @media (min-width: 576px) {
   .modal-dialog {

@@ -37,16 +37,26 @@
 
       var pairs = shuffle(CARDS.concat(CARDS));
 
-      pairs.forEach(function (face) {
+      pairs.forEach(function (face, idx) {
         var card = document.createElement('div');
         card.className = 'memory-card';
         card.dataset.face = face;
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', 'Carta ' + (idx + 1) + ', sin voltear');
+        card.setAttribute('aria-pressed', 'false');
         card.innerHTML =
           '<div class="memory-card-inner">' +
             '<div class="memory-card-front">?</div>' +
             '<div class="memory-card-back">' + face + '</div>' +
           '</div>';
         card.addEventListener('click', function () { flipCard(card); });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            flipCard(card);
+            e.preventDefault();
+          }
+        });
         deck.appendChild(card);
       });
 
@@ -59,6 +69,8 @@
       if (card.classList.contains('matched')) return;
 
       card.classList.add('flipped');
+      card.setAttribute('aria-pressed', 'true');
+      card.setAttribute('aria-label', card.getAttribute('aria-label').replace('sin voltear', 'volteada'));
       flipped.push(card);
 
       if (flipped.length === 2) {
@@ -74,8 +86,8 @@
       var b = flipped[1];
 
       if (a.dataset.face === b.dataset.face) {
-        a.classList.add('matched');
-        b.classList.add('matched');
+        a.classList.add('matched'); a.setAttribute('aria-label', 'Pareja encontrada'); a.setAttribute('tabindex', '-1');
+        b.classList.add('matched'); b.setAttribute('aria-label', 'Pareja encontrada'); b.setAttribute('tabindex', '-1');
         matched += 2;
         flipped = [];
         locked = false;
@@ -85,8 +97,8 @@
         }
       } else {
         setTimeout(function () {
-          a.classList.remove('flipped');
-          b.classList.remove('flipped');
+          a.classList.remove('flipped'); a.setAttribute('aria-pressed', 'false');
+          b.classList.remove('flipped'); b.setAttribute('aria-pressed', 'false');
           flipped = [];
           locked = false;
         }, 900);
