@@ -2,6 +2,25 @@
   'use strict';
 
   /* =============================================
+   * DARK MODE — toggle y persistencia
+   * ============================================= */
+  var THEME_KEY = 'ubbe-theme';
+
+  function applyTheme(dark) {
+    document.body.classList.toggle('dark-mode', dark);
+    localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
+  }
+
+  // Restaurar preferencia guardada
+  if (localStorage.getItem(THEME_KEY) === 'dark') {
+    applyTheme(true);
+  }
+
+  document.getElementById('theme-toggle').addEventListener('click', function () {
+    applyTheme(!document.body.classList.contains('dark-mode'));
+  });
+
+  /* =============================================
    * SOPA DE LETRAS — init
    * ============================================= */
   var WORDSEARCH_WORDS = [

@@ -2,12 +2,17 @@
 // Ubbe Game — Entry point SCSS
 // =============================================
 
+@use 'variables';
 @use 'base';
 @use 'navbar';
 @use 'landing';
+@use 'animations';
 
 // Juegos
 @use 'games/wordsearch';
 @use 'games/memory';
 @use 'games/sudoku';
 @use 'games/scores';
+
+// Tema oscuro (siempre al final para que sus overrides tengan mayor especificidad)
+@use 'dark-mode';

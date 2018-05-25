@@ -1,0 +1,136 @@
+// =============================================
+// Dark Mode — overrides para body.dark-mode
+// =============================================
+
+$dk-bg:        #1a1a2e;
+$dk-surface:   #16213e;
+$dk-surface2:  #0f3460;
+$dk-border:    #2d3748;
+$dk-text:      #e2e8f0;
+$dk-text-muted:#a0aec0;
+$dk-blue:      #63b3ed;
+
+body.dark-mode {
+  background: $dk-bg;
+  color: $dk-text;
+
+  // ---- Navbar ----
+  .ubbe-navbar {
+    background: linear-gradient(135deg, #0f2460 0%, #1a3a6e 100%);
+  }
+
+  // ---- Landing ----
+  .ubbe-hero-subtitle { color: $dk-text-muted; }
+
+  // ---- Bootstrap Cards ----
+  .card {
+    background: $dk-surface;
+    border-color: $dk-border;
+  }
+
+  .card-title { color: $dk-text; }
+  .card-text  { color: $dk-text-muted; }
+
+  // ---- Modales Bootstrap ----
+  .modal-content {
+    background: $dk-surface;
+    border-color: $dk-border;
+  }
+
+  .modal-header {
+    background: $dk-surface2;
+    border-bottom-color: $dk-border;
+  }
+
+  .modal-footer {
+    background: $dk-surface2;
+    border-top-color: $dk-border;
+  }
+
+  .modal-title { color: $dk-text; }
+
+  .close {
+    color: $dk-text;
+    opacity: 0.7;
+    &:hover { opacity: 1; }
+  }
+
+  // ---- Botones secundarios ----
+  .btn-secondary {
+    background: $dk-border;
+    border-color: $dk-border;
+    color: $dk-text;
+  }
+
+  // ---- Sudoku ----
+  .sudoku-board { border-color: #4a5568; }
+
+  .sudoku-cell {
+    background: #1e2a4a;
+    border-color: $dk-border;
+    color: $dk-text;
+
+    &.given            { color: $dk-text-muted; }
+    &:not(.given)      { color: $dk-blue; }
+    &.highlight        { background: #253152; }
+    &.selected         { background: #2b4f82 !important; outline-color: $dk-blue; }
+    &.box-border-right { border-right-color:  #4a5568; }
+    &.box-border-bottom{ border-bottom-color: #4a5568; }
+    &.error            { background: #3d1a1a !important; color: #fc8181 !important; }
+    &.complete         { background: #1a3d2b !important; color: #68d391 !important; }
+  }
+
+  .sudoku-num-btn {
+    background: $dk-surface;
+    border-color: #4a5568;
+    color: $dk-blue;
+    &:hover { background: #253152; border-color: $dk-blue; }
+  }
+
+  .sudoku-erase-btn {
+    background: #3d1a1a;
+    border-color: #fc8181;
+    color: #fc8181;
+    &:hover { background: #4d2020; }
+  }
+
+  .sudoku-label,
+  .sudoku-timer { color: $dk-text-muted; }
+
+  // ---- Memory ----
+  .memory-moves { color: $dk-text-muted; }
+
+  .memory-card-front {
+    background: #2b4f82;
+    box-shadow: none;
+  }
+
+  .memory-card-back {
+    background: $dk-surface;
+    border-color: #4a5568;
+  }
+
+  .memory-card.matched .memory-card-back {
+    background: #1a3d2b;
+    border-color: #68d391;
+  }
+
+  // ---- Scores ----
+  .scores-panel    { border-top-color: $dk-border; }
+  .scores-title    { color: #718096; }
+  .scores-empty    { color: #718096; }
+  .scores-value    { color: $dk-text; }
+  .scores-best     { color: $dk-text; }
+  .scores-list li  { border-bottom-color: $dk-border; color: $dk-text-muted; }
+  .scores-clear-btn{
+    border-color: $dk-border;
+    color: #718096;
+    &:hover { border-color: #fc8181; color: #fc8181; }
+  }
+
+  // ---- Restart btn ----
+  .memory-restart-btn {
+    background: #2b4f82;
+    &:hover { background: #1a3a6e; }
+  }
+}

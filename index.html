@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
     <title>Ubbe Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +8,25 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar ubbe-navbar">
       <div class="container">
-          <div class="row">
-            <div class=" col-md-12" style="text-align:dcenter;">
-              <h3>Ubbe Game</h3>
-            </div>
-          </div>
+        <div class="ubbe-navbar-inner">
+          <a class="ubbe-brand" href="#">
+            <span class="ubbe-brand-name">Ubbe<span class="ubbe-brand-accent">Game</span></span>
+          </a>
+          <button class="ubbe-theme-btn" id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">
+            <span class="theme-icon-light">&#9790;</span>
+            <span class="theme-icon-dark">&#9728;</span>
+          </button>
+        </div>
       </div>
     </nav>
+
+    <div class="ubbe-hero">
+      <div class="container">
+        <p class="ubbe-hero-subtitle">Juegos educativos de tecnolog&iacute;a y mec&aacute;nica</p>
+      </div>
+    </div>
 
     <div class="container">
       <div class="starter-template">

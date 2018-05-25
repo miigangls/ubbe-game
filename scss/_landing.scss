@@ -1,7 +1,25 @@
 // =============================================
-// Landing — tarjetas de juegos
+// Landing — hero + tarjetas de juegos
 // =============================================
 @use 'variables' as *;
+
+// Header hero debajo del navbar
+.ubbe-hero {
+  padding: 28px 0 14px;
+  text-align: center;
+}
+
+.ubbe-hero-subtitle {
+  font-size: 1em;
+  color: $color-text-muted;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+// Contenedor de tarjetas
+.starter-template {
+  padding-bottom: 40px;
+}
 
 .body h1 {
   font-size: 150px;

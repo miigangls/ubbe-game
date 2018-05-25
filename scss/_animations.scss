@@ -1,0 +1,35 @@
+// =============================================
+// Animations — entrada de tarjetas + hover
+// =============================================
+
+// Fade-in con subida
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Entrada escalonada de las tarjetas de la landing
+.starter-template .col-md-3 {
+  animation: fadeInUp 0.5s ease both;
+
+  &:nth-child(1) { animation-delay: 0s;    }
+  &:nth-child(2) { animation-delay: 0.10s; }
+  &:nth-child(3) { animation-delay: 0.20s; }
+  &:nth-child(4) { animation-delay: 0.30s; }
+}
+
+// Hover de tarjeta: lift + sombra
+.starter-template .card {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.13);
+  }
+}

@@ -1,7 +1,67 @@
 // =============================================
-// Navbar
+// Navbar — Ubbe Game
 // =============================================
+@use 'variables' as *;
 
-nav.navbar.navbar-inverse {
-  border-radius: 0 !important;
+.ubbe-navbar {
+  background: linear-gradient(135deg, #2d3a8c 0%, #4a90d9 100%);
+  padding: 0.65rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  border: none;
+  border-radius: 0;
+}
+
+.ubbe-navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Marca / Brand
+.ubbe-brand {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &:hover { text-decoration: none; }
+}
+
+.ubbe-brand-name {
+  font-size: 1.45em;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.ubbe-brand-accent {
+  color: #ffd700;
+}
+
+// Botón de modo oscuro
+.ubbe-theme-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 20px;
+  padding: 5px 16px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  line-height: 1;
+  transition: background $transition-base;
+  display: flex;
+  align-items: center;
+
+  &:hover { background: rgba(255, 255, 255, 0.28); }
+
+  // Modo claro: muestra luna (para activar oscuro)
+  .theme-icon-dark  { display: none; }
+  .theme-icon-light { display: inline; }
+}
+
+// Cuando está en modo oscuro: muestra sol
+body.dark-mode .ubbe-theme-btn {
+  .theme-icon-dark  { display: inline; }
+  .theme-icon-light { display: none; }
 }
