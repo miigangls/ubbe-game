@@ -90,6 +90,33 @@
             </div>
             <div class="col-md-3 col-sm-6 mb-4">
               <div class="card h-100">
+                <div class="card-img-top hm-card-img d-flex align-items-center justify-content-center" aria-hidden="true">
+                  <svg viewBox="0 0 60 75" width="60" height="75">
+                    <line x1="5"  y1="70" x2="55" y2="70" stroke="#4a90d9" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="17" y1="70" x2="17" y2="5"  stroke="#4a90d9" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="17" y1="5"  x2="42" y2="5"  stroke="#4a90d9" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="42" y1="5"  x2="42" y2="15" stroke="#4a90d9" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="42" cy="22" r="7" fill="none" stroke="#4a90d9" stroke-width="2"/>
+                    <line x1="42" y1="29" x2="42" y2="48" stroke="#4a90d9" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="42" y1="36" x2="33" y2="43" stroke="#4a90d9" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="42" y1="36" x2="51" y2="43" stroke="#4a90d9" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="42" y1="48" x2="33" y2="60" stroke="#4a90d9" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="42" y1="48" x2="51" y2="60" stroke="#4a90d9" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">AHORCADO</h5>
+                  <p class="card-text">Adivina la palabra t&eacute;cnica letra por letra antes de quedarte sin intentos.</p>
+                </div>
+                <div class="card-body">
+                  <button type="button" class="btn btn-success"
+                          data-toggle="modal" data-target="#hangmanModal"
+                          aria-label="Jugar Ahorcado">Jugar</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="card h-100">
                 <img class="card-img-top" src="img/tecnologiadivertida.jpg" alt="">
                 <div class="card-body">
                   <h5 class="card-title">JUEGOS DE TECNOLOG&Iacute;A</h5>
@@ -206,6 +233,41 @@
     </div>
 
     <!-- =============================================
+         Modal: AHORCADO
+         ============================================= -->
+    <div class="modal fade" id="hangmanModal" tabindex="-1" role="dialog"
+         aria-labelledby="hangmanModalTitle" aria-modal="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="hangmanModalTitle">AHORCADO</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Selector de categoría -->
+            <div class="ws-categories" role="group" aria-label="Seleccionar categoría">
+              <button class="hm-cat-btn ws-cat-btn active" data-cat="mecanica"
+                      aria-pressed="true">Mec&aacute;nica</button>
+              <button class="hm-cat-btn ws-cat-btn" data-cat="electronica"
+                      aria-pressed="false">Electr&oacute;nica</button>
+              <button class="hm-cat-btn ws-cat-btn" data-cat="informatica"
+                      aria-pressed="false">Inform&aacute;tica</button>
+            </div>
+            <div id="hangman-container" role="region" aria-label="Juego de Ahorcado"></div>
+            <button class="memory-restart-btn" id="hangman-restart"
+                    aria-label="Siguiente palabra">Siguiente palabra</button>
+            <div id="hangman-scores" aria-live="polite"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
          Modal: ESTADÍSTICAS
          ============================================= -->
     <div class="modal fade" id="statsModal" tabindex="-1" role="dialog"
@@ -235,6 +297,7 @@
     <script type="text/javascript" src="js/wordfindgame.js"></script>
     <script type="text/javascript" src="js/wordsearch-data.js"></script>
     <script type="text/javascript" src="js/scores.js"></script>
+    <script type="text/javascript" src="js/hangman.js"></script>
     <script type="text/javascript" src="js/memory-game.js"></script>
     <script type="text/javascript" src="js/sudoku.js"></script>
     <script type="text/javascript" src="js/app.js"></script>

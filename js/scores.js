@@ -96,6 +96,9 @@
         var s = value % 60;
         return m + ':' + (s < 10 ? '0' : '') + s;
       }
+      if (game === 'hangman') {
+        return value + ' error' + (value !== 1 ? 'es' : '');
+      }
       return value + ' movs.';
     },
 
@@ -145,8 +148,9 @@
 
       var self   = this;
       var GAMES  = [
-        { key: 'memory', label: 'Encuentra Caras', unit: 'movimientos' },
-        { key: 'sudoku', label: 'Sudoku',           unit: 'segundos'   }
+        { key: 'memory',  label: 'Encuentra Caras', unit: 'movimientos' },
+        { key: 'sudoku',  label: 'Sudoku',           unit: 'segundos'   },
+        { key: 'hangman', label: 'Ahorcado',         unit: 'errores'    }
       ];
 
       var html = '';

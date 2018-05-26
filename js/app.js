@@ -114,6 +114,50 @@
   });
 
   /* =============================================
+   * AHORCADO — init + categorías + teclado físico
+   * ============================================= */
+  var hangmanGame = new HangmanGame('#hangman-container');
+  var hangmanCat  = 'mecanica';
+
+  function hangmanKeyHandler(e) {
+    var key = e.key.toUpperCase();
+    if (/^[A-ZÁÉÍÓÚÑ]$/.test(key)) {
+      hangmanGame.guess(key);
+      e.preventDefault();
+    }
+  }
+
+  $('#hangmanModal').on('show.bs.modal', function () {
+    hangmanGame.setCategory(hangmanCat);
+    hangmanGame.init();
+    Scores.render('hangman', '#hangman-scores');
+    document.addEventListener('keydown', hangmanKeyHandler);
+  });
+
+  $('#hangmanModal').on('hidden.bs.modal', function () {
+    hangmanGame.destroy();
+    document.removeEventListener('keydown', hangmanKeyHandler);
+  });
+
+  document.getElementById('hangman-restart').addEventListener('click', function () {
+    hangmanGame.setCategory(hangmanCat);
+    hangmanGame.init();
+  });
+
+  $(document).on('click', '.hm-cat-btn', function () {
+    hangmanCat = $(this).data('cat');
+    $('.hm-cat-btn').removeClass('active').attr('aria-pressed', 'false');
+    $(this).addClass('active').attr('aria-pressed', 'true');
+    hangmanGame.setCategory(hangmanCat);
+    hangmanGame.init();
+  });
+
+  window.addEventListener('ubbeGame:hangmanWin', function (e) {
+    Scores.add('hangman', e.detail.errors);
+    Scores.render('hangman', '#hangman-scores');
+  });
+
+  /* =============================================
    * ESTADÍSTICAS — modal
    * ============================================= */
   $('#statsModal').on('show.bs.modal', function () {

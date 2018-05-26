@@ -14,6 +14,7 @@
 @use 'games/sudoku';
 @use 'games/scores';
 @use 'games/stats';
+@use 'games/hangman';
 
 // Tema oscuro (siempre al final para que sus overrides tengan mayor especificidad)
 @use 'dark-mode';
