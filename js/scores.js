@@ -24,7 +24,7 @@
         if (!raw) return {};
         var data = JSON.parse(raw);
         // Migración: formato antiguo era array directo
-        ['memory', 'sudoku'].forEach(function (g) {
+        ['memory', 'sudoku', 'quiz'].forEach(function (g) {
           if (Array.isArray(data[g])) {
             data[g] = { top: data[g], history: data[g].slice() };
           } else if (!data[g]) {
@@ -51,9 +51,13 @@
       var data = this._load();
       var gd   = this._gameData(data, game);
 
-      // Top 5 ascendente
+      // Top 5: quiz = descendente (mayor = mejor), resto = ascendente (menor = mejor)
       gd.top.push(value);
-      gd.top.sort(function (a, b) { return a - b; });
+      if (game === 'quiz') {
+        gd.top.sort(function (a, b) { return b - a; });
+      } else {
+        gd.top.sort(function (a, b) { return a - b; });
+      }
       gd.top = gd.top.slice(0, MAX_TOP);
 
       // Historial cronológico
@@ -77,7 +81,9 @@
     getStats: function (game) {
       var history = this.getHistory(game);
       if (!history.length) return null;
-      var best = Math.min.apply(null, history);
+      var best = game === 'quiz'
+        ? Math.max.apply(null, history)
+        : Math.min.apply(null, history);
       var avg  = Math.round(history.reduce(function (s, v) { return s + v; }, 0) / history.length);
       return { played: history.length, best: best, avg: avg, history: history };
     },
@@ -98,6 +104,9 @@
       }
       if (game === 'hangman') {
         return value + ' error' + (value !== 1 ? 'es' : '');
+      }
+      if (game === 'quiz') {
+        return value + ' / 10';
       }
       return value + ' movs.';
     },
@@ -150,7 +159,8 @@
       var GAMES  = [
         { key: 'memory',  label: 'Encuentra Caras', unit: 'movimientos' },
         { key: 'sudoku',  label: 'Sudoku',           unit: 'segundos'   },
-        { key: 'hangman', label: 'Ahorcado',         unit: 'errores'    }
+        { key: 'hangman', label: 'Ahorcado',         unit: 'errores'    },
+        { key: 'quiz',    label: 'Quiz',             unit: 'aciertos'   }
       ];
 
       var html = '';
@@ -179,8 +189,10 @@
 
             html += '<div class="stats-chart" aria-hidden="true" title="Últimas ' + last5.length + ' partidas">';
             last5.forEach(function (v) {
-              // Barra más alta = mejor rendimiento (valor más bajo)
-              var pct    = Math.round(((maxV - v) / range) * 65 + 20);
+              // Barra más alta = mejor rendimiento (valor más bajo, excepto quiz donde mayor = mejor)
+              var pct = g.key === 'quiz'
+                ? Math.round(((v - minV) / range) * 65 + 20)
+                : Math.round(((maxV - v) / range) * 65 + 20);
               var isBest = (v === stats.best);
               html += '<div class="stats-bar' + (isBest ? ' stats-bar--best' : '') + '" style="height:' + pct + '%" title="' + self._format(g.key, v) + '"></div>';
             });

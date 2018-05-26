@@ -117,6 +117,22 @@
             </div>
             <div class="col-md-3 col-sm-6 mb-4">
               <div class="card h-100">
+                <div class="card-img-top quiz-card-img d-flex align-items-center justify-content-center" aria-hidden="true">
+                  <span style="font-size:3.5rem;">&#10067;</span>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">QUIZ DE TECNOLOG&Iacute;A</h5>
+                  <p class="card-text">Responde 10 preguntas sobre mec&aacute;nica, electr&oacute;nica e inform&aacute;tica antes de que se acabe el tiempo.</p>
+                </div>
+                <div class="card-body">
+                  <button type="button" class="btn btn-success"
+                          data-toggle="modal" data-target="#quizModal"
+                          aria-label="Jugar Quiz de Tecnología">Jugar</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="card h-100">
                 <img class="card-img-top" src="img/tecnologiadivertida.jpg" alt="">
                 <div class="card-body">
                   <h5 class="card-title">JUEGOS DE TECNOLOG&Iacute;A</h5>
@@ -268,6 +284,41 @@
     </div>
 
     <!-- =============================================
+         Modal: QUIZ DE TECNOLOGÍA
+         ============================================= -->
+    <div class="modal fade" id="quizModal" tabindex="-1" role="dialog"
+         aria-labelledby="quizModalTitle" aria-modal="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="quizModalTitle">QUIZ DE TECNOLOG&Iacute;A</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Selector de categoría -->
+            <div class="ws-categories" role="group" aria-label="Seleccionar categoría">
+              <button class="quiz-cat-btn ws-cat-btn active" data-cat="mecanica"
+                      aria-pressed="true">Mec&aacute;nica</button>
+              <button class="quiz-cat-btn ws-cat-btn" data-cat="electronica"
+                      aria-pressed="false">Electr&oacute;nica</button>
+              <button class="quiz-cat-btn ws-cat-btn" data-cat="informatica"
+                      aria-pressed="false">Inform&aacute;tica</button>
+            </div>
+            <div id="quiz-container" role="region" aria-label="Juego de Quiz"></div>
+            <button class="memory-restart-btn" id="quiz-restart"
+                    aria-label="Jugar otra ronda">Otra ronda</button>
+            <div id="quiz-scores" aria-live="polite"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
          Modal: ESTADÍSTICAS
          ============================================= -->
     <div class="modal fade" id="statsModal" tabindex="-1" role="dialog"
@@ -298,6 +349,8 @@
     <script type="text/javascript" src="js/wordsearch-data.js"></script>
     <script type="text/javascript" src="js/scores.js"></script>
     <script type="text/javascript" src="js/hangman.js"></script>
+    <script type="text/javascript" src="js/quiz-data.js"></script>
+    <script type="text/javascript" src="js/quiz.js"></script>
     <script type="text/javascript" src="js/memory-game.js"></script>
     <script type="text/javascript" src="js/sudoku.js"></script>
     <script type="text/javascript" src="js/app.js"></script>

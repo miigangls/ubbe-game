@@ -1,0 +1,133 @@
+// =============================================
+// Quiz de Tecnología
+// =============================================
+@use '../variables' as *;
+
+// Progreso + puntuación en vivo
+.quiz-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+  font-size: .85rem;
+  color: #666;
+}
+
+.quiz-score-live {
+  font-weight: 700;
+  color: $color-primary;
+}
+
+// Barra de cuenta regresiva
+.quiz-timer-wrap {
+  width: 100%;
+  height: 6px;
+  background: #e9ecef;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.quiz-timer-bar {
+  height: 100%;
+  background: $color-primary;
+  border-radius: 3px;
+  transition: width .9s linear, background .3s;
+
+  &--warn   { background: #f0ad4e; }
+  &--danger { background: $color-danger; }
+}
+
+// Pregunta
+.quiz-question {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  min-height: 3em;
+}
+
+// Opciones de respuesta
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quiz-opt {
+  padding: .6rem .8rem;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  background: #fff;
+  font-size: .88rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .15s, background .15s, transform .1s;
+  line-height: 1.3;
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary;
+    background: #ddeeff;
+    transform: translateY(-1px);
+  }
+
+  &--correct {
+    border-color: $color-success !important;
+    background: #d4edda !important;
+    color: #155724;
+    font-weight: 700;
+  }
+
+  &--wrong {
+    border-color: $color-danger !important;
+    background: #f8d7da !important;
+    color: #721c24;
+  }
+
+  &:disabled { cursor: default; }
+}
+
+// Pantalla de resultado final
+.quiz-result {
+  text-align: center;
+  padding: 1rem 0;
+  animation: fadeInUp .4s ease both;
+}
+
+.quiz-result-emoji {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+
+.quiz-result-msg {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: .25rem;
+  color: $color-primary;
+}
+
+.quiz-result-score {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  color: $color-primary;
+  margin-bottom: .25rem;
+
+  span {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #999;
+  }
+}
+
+.quiz-result-pct {
+  font-size: .9rem;
+  color: #666;
+  margin-bottom: 0;
+}

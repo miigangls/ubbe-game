@@ -133,4 +133,24 @@ body.dark-mode {
     background: #2b4f82;
     &:hover { background: #1a3a6e; }
   }
+
+  // ---- Quiz ----
+  .quiz-card-img    { background: #3a3010; }
+  .quiz-question    { color: $dk-text; }
+  .quiz-progress    { color: #718096; }
+  .quiz-timer-wrap  { background: $dk-border; }
+  .quiz-opt {
+    background: $dk-surface2;
+    border-color: $dk-border;
+    color: $dk-text;
+    &:hover:not(:disabled) {
+      border-color: #4a90d9;
+      background: #1a4a7a;
+    }
+    &--correct { border-color: #28a745 !important; background: #1a3a2a !important; color: #68d391; }
+    &--wrong   { border-color: #c0392b !important; background: #3a1a1a !important; color: #fc8181; }
+  }
+  .quiz-result-msg   { color: #90cdf4; }
+  .quiz-result-score { color: #90cdf4; span { color: #718096; } }
+  .quiz-result-pct   { color: #718096; }
 }

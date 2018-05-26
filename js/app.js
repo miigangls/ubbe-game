@@ -158,6 +158,40 @@
   });
 
   /* =============================================
+   * QUIZ DE TECNOLOGÍA — init + categorías + scores
+   * ============================================= */
+  var quizGame = new QuizGame('#quiz-container');
+  var quizCat  = 'mecanica';
+
+  $('#quizModal').on('show.bs.modal', function () {
+    quizGame.setCategory(quizCat);
+    quizGame.init();
+    Scores.render('quiz', '#quiz-scores');
+  });
+
+  $('#quizModal').on('hidden.bs.modal', function () {
+    quizGame.destroy();
+  });
+
+  document.getElementById('quiz-restart').addEventListener('click', function () {
+    quizGame.setCategory(quizCat);
+    quizGame.init();
+  });
+
+  $(document).on('click', '.quiz-cat-btn', function () {
+    quizCat = $(this).data('cat');
+    $('.quiz-cat-btn').removeClass('active').attr('aria-pressed', 'false');
+    $(this).addClass('active').attr('aria-pressed', 'true');
+    quizGame.setCategory(quizCat);
+    quizGame.init();
+  });
+
+  window.addEventListener('ubbeGame:quizWin', function (e) {
+    Scores.add('quiz', e.detail.score);
+    Scores.render('quiz', '#quiz-scores');
+  });
+
+  /* =============================================
    * ESTADÍSTICAS — modal
    * ============================================= */
   $('#statsModal').on('show.bs.modal', function () {
