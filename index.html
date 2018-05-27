@@ -133,6 +133,23 @@
             </div>
             <div class="col-md-3 col-sm-6 mb-4">
               <div class="card h-100">
+                <div class="bin-card-img" aria-hidden="true">
+                  <div>01001000</div>
+                  <span>Dec &harr; Bin</span>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">BINARIO</h5>
+                  <p class="card-text">Convierte n&uacute;meros entre decimal y binario antes de que se acabe el tiempo.</p>
+                </div>
+                <div class="card-body">
+                  <button type="button" class="btn btn-success"
+                          data-toggle="modal" data-target="#binaryModal"
+                          aria-label="Jugar Binario">Jugar</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+              <div class="card h-100">
                 <img class="card-img-top" src="img/tecnologiadivertida.jpg" alt="">
                 <div class="card-body">
                   <h5 class="card-title">JUEGOS DE TECNOLOG&Iacute;A</h5>
@@ -319,6 +336,39 @@
     </div>
 
     <!-- =============================================
+         Modal: BINARIO
+         ============================================= -->
+    <div class="modal fade" id="binaryModal" tabindex="-1" role="dialog"
+         aria-labelledby="binaryModalTitle" aria-modal="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="binaryModalTitle">BINARIO</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Selector de modo -->
+            <div class="ws-categories" role="group" aria-label="Seleccionar modo de juego">
+              <button class="bin-mode-btn ws-cat-btn active" data-mode="dec2bin"
+                      aria-pressed="true">Dec &rarr; Bin</button>
+              <button class="bin-mode-btn ws-cat-btn" data-mode="bin2dec"
+                      aria-pressed="false">Bin &rarr; Dec</button>
+            </div>
+            <div id="binary-container" role="region" aria-label="Juego de Binario"></div>
+            <button class="memory-restart-btn" id="binary-restart"
+                    aria-label="Jugar otra ronda">Otra ronda</button>
+            <div id="binary-scores" aria-live="polite"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =============================================
          Modal: ESTADÍSTICAS
          ============================================= -->
     <div class="modal fade" id="statsModal" tabindex="-1" role="dialog"
@@ -351,6 +401,7 @@
     <script type="text/javascript" src="js/hangman.js"></script>
     <script type="text/javascript" src="js/quiz-data.js"></script>
     <script type="text/javascript" src="js/quiz.js"></script>
+    <script type="text/javascript" src="js/binary.js"></script>
     <script type="text/javascript" src="js/memory-game.js"></script>
     <script type="text/javascript" src="js/sudoku.js"></script>
     <script type="text/javascript" src="js/app.js"></script>

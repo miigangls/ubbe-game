@@ -24,7 +24,7 @@
         if (!raw) return {};
         var data = JSON.parse(raw);
         // Migración: formato antiguo era array directo
-        ['memory', 'sudoku', 'quiz'].forEach(function (g) {
+        ['memory', 'sudoku', 'quiz', 'binary'].forEach(function (g) {
           if (Array.isArray(data[g])) {
             data[g] = { top: data[g], history: data[g].slice() };
           } else if (!data[g]) {
@@ -53,7 +53,7 @@
 
       // Top 5: quiz = descendente (mayor = mejor), resto = ascendente (menor = mejor)
       gd.top.push(value);
-      if (game === 'quiz') {
+      if (game === 'quiz' || game === 'binary') {
         gd.top.sort(function (a, b) { return b - a; });
       } else {
         gd.top.sort(function (a, b) { return a - b; });
@@ -81,7 +81,7 @@
     getStats: function (game) {
       var history = this.getHistory(game);
       if (!history.length) return null;
-      var best = game === 'quiz'
+      var best = (game === 'quiz' || game === 'binary')
         ? Math.max.apply(null, history)
         : Math.min.apply(null, history);
       var avg  = Math.round(history.reduce(function (s, v) { return s + v; }, 0) / history.length);
@@ -105,7 +105,7 @@
       if (game === 'hangman') {
         return value + ' error' + (value !== 1 ? 'es' : '');
       }
-      if (game === 'quiz') {
+      if (game === 'quiz' || game === 'binary') {
         return value + ' / 10';
       }
       return value + ' movs.';
@@ -160,7 +160,8 @@
         { key: 'memory',  label: 'Encuentra Caras', unit: 'movimientos' },
         { key: 'sudoku',  label: 'Sudoku',           unit: 'segundos'   },
         { key: 'hangman', label: 'Ahorcado',         unit: 'errores'    },
-        { key: 'quiz',    label: 'Quiz',             unit: 'aciertos'   }
+        { key: 'quiz',    label: 'Quiz',             unit: 'aciertos'   },
+        { key: 'binary',  label: 'Binario',          unit: 'aciertos'   }
       ];
 
       var html = '';

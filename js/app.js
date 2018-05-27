@@ -192,6 +192,40 @@
   });
 
   /* =============================================
+   * BINARIO — init + modo + scores
+   * ============================================= */
+  var binaryGame = new BinaryGame('#binary-container');
+  var binaryMode = 'dec2bin';
+
+  $('#binaryModal').on('show.bs.modal', function () {
+    binaryGame.setMode(binaryMode);
+    binaryGame.init();
+    Scores.render('binary', '#binary-scores');
+  });
+
+  $('#binaryModal').on('hidden.bs.modal', function () {
+    binaryGame.destroy();
+  });
+
+  document.getElementById('binary-restart').addEventListener('click', function () {
+    binaryGame.setMode(binaryMode);
+    binaryGame.init();
+  });
+
+  $(document).on('click', '.bin-mode-btn', function () {
+    binaryMode = $(this).data('mode');
+    $('.bin-mode-btn').removeClass('active').attr('aria-pressed', 'false');
+    $(this).addClass('active').attr('aria-pressed', 'true');
+    binaryGame.setMode(binaryMode);
+    binaryGame.init();
+  });
+
+  window.addEventListener('ubbeGame:binaryWin', function (e) {
+    Scores.add('binary', e.detail.score);
+    Scores.render('binary', '#binary-scores');
+  });
+
+  /* =============================================
    * ESTADÍSTICAS — modal
    * ============================================= */
   $('#statsModal').on('show.bs.modal', function () {

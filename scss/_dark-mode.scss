@@ -153,4 +153,36 @@ body.dark-mode {
   .quiz-result-msg   { color: #90cdf4; }
   .quiz-result-score { color: #90cdf4; span { color: #718096; } }
   .quiz-result-pct   { color: #718096; }
+
+  // ---- Binario ----
+  .bin-card-img     { background: #0d2a3a; color: #90cdf4; }
+  .bin-progress     { color: #718096; }
+  .bin-question     { color: $dk-text; strong { color: #90cdf4; } }
+  .bin-timer-wrap   { background: $dk-border; }
+  .bin-bit {
+    background: $dk-surface2;
+    border-color: $dk-border;
+    color: #718096;
+    &:hover:not(:disabled) { border-color: #4a90d9; background: #1a4a7a; }
+    &--on { background: #4a90d9; border-color: #4a90d9; color: #fff; }
+  }
+  .bin-bit-labels span { color: #4a5568; }
+  .bin-preview       { color: #90cdf4; }
+  .bin-ref-bit {
+    background: $dk-surface2;
+    border-color: $dk-border;
+    color: #718096;
+    &--on { background: #4a90d9; border-color: #4a90d9; color: #fff; }
+  }
+  .bin-input {
+    background: $dk-surface2;
+    border-color: $dk-border;
+    color: $dk-text;
+    &:focus { border-color: #4a90d9; }
+  }
+  .bin-feedback--correct { background: #1a3a2a; border-color: #28a745; color: #68d391; }
+  .bin-feedback--wrong   { background: #3a1a1a; border-color: #c0392b; color: #fc8181; }
+  .bin-result-msg   { color: #90cdf4; }
+  .bin-result-score { color: #90cdf4; span { color: #718096; } }
+  .bin-result-pct   { color: #718096; }
 }

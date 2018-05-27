@@ -16,6 +16,7 @@
 @use 'games/stats';
 @use 'games/hangman';
 @use 'games/quiz';
+@use 'games/binary';
 
 // Tema oscuro (siempre al final para que sus overrides tengan mayor especificidad)
 @use 'dark-mode';
